@@ -8,10 +8,10 @@ from drf_spectacular.views import SpectacularAPIView, SpectacularRedocView, Spec
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api-auth/', include('rest_framework.urls')),
-    path('', include('home.urls')),
+    # path('', include('home.urls')),
     path('accounts/', include('account.urls')),
     path('blog/', include("blog.urls")),
     path('api/', SpectacularAPIView.as_view(), name='schema'),
-    path('api/schema/', SpectacularSwaggerView.as_view()),
+    path('', SpectacularSwaggerView.as_view()),
     path('api/schema/redoc/', SpectacularRedocView.as_view()),
 ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
