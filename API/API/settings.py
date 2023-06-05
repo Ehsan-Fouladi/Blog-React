@@ -26,6 +26,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_cleanup.apps.CleanupConfig',
 
     # Apps
     'home.apps.HomeConfig',
@@ -36,6 +37,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework_simplejwt',
     "corsheaders",
+    'drf_spectacular',
 ]
 
 MIDDLEWARE = [
@@ -130,6 +132,7 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
 }
 
 # JWT web token
@@ -182,6 +185,11 @@ CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:8000",
 ]
 
-#  pagination
+# drf_spectacular
 
-# PAGINATION_PAGE_SIZE = 3
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'Blog Api',
+    'DESCRIPTION': 'blog project django and react is frontend and backend',
+    'VERSION': '3.2.0',
+    'SERVE_INCLUDE_SCHEMA': False,
+}

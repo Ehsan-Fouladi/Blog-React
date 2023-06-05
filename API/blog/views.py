@@ -8,6 +8,7 @@ from .serializers import ArticleSerializer
 from .pagination import StandardResultsSetPagination
 
 class ArticleApi(APIView, StandardResultsSetPagination):
+    """ View List Article """
     serializer_class = ArticleSerializer
 
     def get(self, request):
@@ -18,6 +19,7 @@ class ArticleApi(APIView, StandardResultsSetPagination):
     
     
 class ArticleApiCreateApiView(ListCreateAPIView):
+    """ create new Article """
     queryset = Article.objects.all()
     serializer_class = ArticleSerializer
 
