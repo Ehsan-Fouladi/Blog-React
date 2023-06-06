@@ -1,5 +1,5 @@
 from rest_framework.views import APIView
-from rest_framework.generics import ListCreateAPIView
+from rest_framework.generics import ListCreateAPIView, ListAPIView
 from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
@@ -27,3 +27,7 @@ class ArticleApiCreateApiView(ListCreateAPIView):
         queryset = self.get_queryset()
         serializer = ArticleSerializer(queryset, many=True)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
+    
+class ArticleListView(ListAPIView):
+    serializer_class = ArticleSerializer
+    queryset = Article.objects.all()

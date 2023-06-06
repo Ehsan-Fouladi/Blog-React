@@ -5,5 +5,6 @@ from . import views
 
 urlpatterns = [
     path("", views.ArticleApi.as_view(), name="article"),
-    path("create/", views.ArticleApiCreateApiView.as_view(), name="create")
+    path("list/", views.ArticleListView.as_view(), name="article_list"),
+    path("create/", views.ArticleApiCreateApiView.as_view(), name="create"),
 ]
