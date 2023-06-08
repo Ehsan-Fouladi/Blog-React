@@ -1,27 +1,22 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
+import {NavLink} from "react-router-dom";
 import {
     MDBContainer,
     MDBNavbar,
-    MDBNavbarBrand,
     MDBNavbarToggler,
     MDBIcon,
     MDBNavbarNav,
     MDBNavbarItem,
-    MDBNavbarLink,
     MDBBtn,
-    MDBDropdown,
-    MDBDropdownToggle,
-    MDBDropdownMenu,
-    MDBDropdownItem,
-    MDBCollapse,
+    MDBCollapse
 } from 'mdb-react-ui-kit';
 
-const Navbar = ()=>{
+const Navbar = () => {
     const [showBasic, setShowBasic] = useState(false);
-    return(
+    return (
         <MDBNavbar expand='lg' dark bgColor='primary'>
             <MDBContainer fluid>
-                <MDBNavbarBrand href='#'>Brand</MDBNavbarBrand>
+                <NavLink className="navbar-brand" to='/'>Blog Api</NavLink>
 
                 <MDBNavbarToggler
                     aria-controls='navbarSupportedContent'
@@ -29,42 +24,30 @@ const Navbar = ()=>{
                     aria-label='Toggle navigation'
                     onClick={() => setShowBasic(!showBasic)}
                 >
-                    <MDBIcon icon='bars' fas />
+                    <MDBIcon icon='bars' fas/>
                 </MDBNavbarToggler>
 
                 <MDBCollapse navbar show={showBasic}>
                     <MDBNavbarNav className='mr-auto mb-2 mb-lg-0'>
                         <MDBNavbarItem>
-                            <MDBNavbarLink active aria-current='page' href='#'>
-                                Home
-                            </MDBNavbarLink>
+                            <NavLink className="nav-link" to='/'>Home</NavLink>
                         </MDBNavbarItem>
                         <MDBNavbarItem>
-                            <MDBNavbarLink href='#'>Link</MDBNavbarLink>
+                            <NavLink className="nav-link" to='list/'>Article</NavLink>
                         </MDBNavbarItem>
-
                         <MDBNavbarItem>
-                            <MDBDropdown>
-                                <MDBDropdownToggle tag='a' className='nav-link' role='button'>
-                                    Dropdown
-                                </MDBDropdownToggle>
-                                <MDBDropdownMenu>
-                                    <MDBDropdownItem link>Action</MDBDropdownItem>
-                                    <MDBDropdownItem link>Another action</MDBDropdownItem>
-                                    <MDBDropdownItem link>Something else here</MDBDropdownItem>
-                                </MDBDropdownMenu>
-                            </MDBDropdown>
+                            <NavLink className="nav-link" to='login/'>Login</NavLink>
                         </MDBNavbarItem>
-
                         <MDBNavbarItem>
-                            <MDBNavbarLink disabled href='#' tabIndex={-1} aria-disabled='true'>
-                                Disabled
-                            </MDBNavbarLink>
+                            <NavLink className="nav-link" to='register/'>Register</NavLink>
+                        </MDBNavbarItem>
+                        <MDBNavbarItem>
+                            <NavLink className="nav-link" to='panel/'>Panel User</NavLink>
                         </MDBNavbarItem>
                     </MDBNavbarNav>
 
                     <form className='d-flex input-group w-auto'>
-                        <input type='search' className='form-control' placeholder='Type query' aria-label='Search' />
+                        <input type='search' className='form-control' placeholder='Type query' aria-label='Search'/>
                         <MDBBtn color='dark'>Search</MDBBtn>
                     </form>
                 </MDBCollapse>
