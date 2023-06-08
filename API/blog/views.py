@@ -31,3 +31,9 @@ class ArticleApiCreateApiView(ListCreateAPIView):
 class ArticleListView(ListAPIView):
     serializer_class = ArticleSerializer
     queryset = Article.objects.all()
+
+class ArticleDetailView(APIView):
+    def get(self, request, pk):
+        query = Article.objects.get(id=pk)
+        serializer = ArticleSerializer(instance=query)
+        return Response(serializer.data)
