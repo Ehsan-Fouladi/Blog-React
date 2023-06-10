@@ -11,16 +11,16 @@ class App extends Component {
     render() {
         return (
             <>
-                    <Navbar/>
+                <Navbar/>
                 <div>
                     <Routes>
                         <Route path='/' element={<Slider/>}/>
-                        <Route path="list/" element={<ArticleList/>} />
-                        <Route path="list/detail/:id" element={<Detail/>} />
-                        <Route path="*" element={<Notfound/>} />
+                        <Route path="list/" element={<ArticleList/>}/>
+                        <Route path="list/detail/:id" element={<Detail/>}/>
+                        <Route path="*" element={<Notfound/>}/>
                     </Routes>
                 </div>
-                    <Footer/>
+                <Footer/>
             </>
         )
     }

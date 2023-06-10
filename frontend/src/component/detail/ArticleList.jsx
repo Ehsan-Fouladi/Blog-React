@@ -11,7 +11,8 @@ import {
 import {Component} from "react";
 import axios from "axios";
 import {Link} from "react-router-dom";
-import Pageintion from "../nav/pageintion";
+import Paginate from "../nav/Paginate";
+import Loading from "../loading/loading";
 
 class ArticleList extends Component {
     state = {
@@ -21,7 +22,7 @@ class ArticleList extends Component {
     async componentDidMount() {
         const response = await axios.get('/blog/list/')
         setTimeout(() => {
-            this.setState({users: response.data, isLoading: false})
+            this.setState({users: response.data.results, isLoading: false})
         }, 1000)
     }
 
@@ -33,7 +34,7 @@ class ArticleList extends Component {
         return (
             <MDBRow className='row-cols-1 row-cols-md-3 g-4'
                     style={{marginLeft: "0px", marginRight: "0px", marginTop: "2px"}}>
-                {this.state.users.map((article) => {
+                {this.state.isLoading ? (<Loading/>) : (this.state.users.map((article) => {
                     return (
                         <MDBCol>
                             <MDBCard className='h-100'>
@@ -57,10 +58,9 @@ class ArticleList extends Component {
                                     <small className='text-muted'>{this.datetime(article)}</small>
                                 </MDBCardFooter>
                             </MDBCard>
-                        </MDBCol>
-                    );
-                })};
-                <Pageintion/>
+                        </MDBCol>);
+                }))};
+                <Paginate/>
             </MDBRow>
         )
     }

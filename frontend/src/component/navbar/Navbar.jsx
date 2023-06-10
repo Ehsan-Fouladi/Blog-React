@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import {useState} from 'react';
 import {NavLink} from "react-router-dom";
 import {
     MDBContainer,
@@ -13,6 +13,7 @@ import {
 
 const Navbar = () => {
     const [showBasic, setShowBasic] = useState(false);
+
     return (
         <MDBNavbar expand='lg' dark bgColor='primary'>
             <MDBContainer fluid>
@@ -47,7 +48,7 @@ const Navbar = () => {
                     </MDBNavbarNav>
 
                     <form className='d-flex input-group w-auto'>
-                        <input type='search' className='form-control' placeholder='Type query' aria-label='Search'/>
+                        <input type='search' className='form-control' name="q" placeholder='Type query' aria-label='Search'/>
                         <MDBBtn color='dark'>Search</MDBBtn>
                     </form>
                 </MDBCollapse>

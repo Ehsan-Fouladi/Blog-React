@@ -12,7 +12,7 @@ import {useState, useEffect} from "react";
 import axios from "axios";
 
 const Detail = () => {
-    const {id} = useParams()
+    const {id} = useParams({})
     const [detail, setDetail] = useState({})
 
     const getdetail = async () => {

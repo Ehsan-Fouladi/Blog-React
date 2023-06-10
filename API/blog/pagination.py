@@ -7,4 +7,4 @@ class StandardResultsSetPagination(PageNumberPagination):
 
 
 class StandardResultsSetPaginationList(PageNumberPagination):
-    page_size = getattr(settings, "PAGINATION_PAGE_SIZE", 1)
+    page_size = getattr(settings, "PAGINATION_PAGE_SIZE", 6)

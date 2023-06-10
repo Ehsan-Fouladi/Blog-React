@@ -39,7 +39,7 @@ class Card extends Component {
             <MDBRow className='row-cols-1 row-cols-md-3 g-4'
                     style={{marginLeft: "0px", marginRight: "0px"}}>
                 {this.state.isLoading ? (<Loading/>) : (this.state.users.map((user) => {
-                    return (<MDBCol>
+                    return (<MDBCol key={user.id}>
                         <MDBCard className='h-100'>
                             <MDBCardImage
                                 src={user.image}
