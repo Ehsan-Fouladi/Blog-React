@@ -49,7 +49,7 @@ class SearchArticleApi(APIView, StandardResultsSetPaginationList):
     serializer_class = ArticleSerializer
     def get(self, request):
         q = request.GET.get("q")
-        queryset = Article.objects.filter(Q(title=q) | q(subjects=q))
+        queryset = Article.objects.filter(Q(title__icontains=q) | Q(subjects__icontains=q))
         result = self.paginate_queryset(queryset, request)
         serializer = ArticleSerializer(instance=result, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
