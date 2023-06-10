@@ -29,7 +29,6 @@ INSTALLED_APPS = [
     'django_cleanup.apps.CleanupConfig',
 
     # Apps
-    'home.apps.HomeConfig',
     'account.apps.AccountConfig',
     'blog.apps.BlogConfig',
 

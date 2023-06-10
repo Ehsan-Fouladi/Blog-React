@@ -3,12 +3,13 @@ from rest_framework.generics import ListCreateAPIView, ListAPIView
 from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
+from django.db.models import Q
 from .models import Article
 from .serializers import ArticleSerializer
-from .pagination import StandardResultsSetPagination
+from .pagination import StandardResultsSetPagination, StandardResultsSetPaginationList
 
 class ArticleApi(APIView, StandardResultsSetPagination):
-    """ View List Article """
+    """ Home View List Article """
     serializer_class = ArticleSerializer
 
     def get(self, request):
@@ -29,11 +30,26 @@ class ArticleApiCreateApiView(ListCreateAPIView):
         return Response(serializer.data, status=status.HTTP_201_CREATED)
     
 class ArticleListView(ListAPIView):
+    """ All post Article """
     serializer_class = ArticleSerializer
     queryset = Article.objects.all()
+    pagination_class = StandardResultsSetPaginationList
 
 class ArticleDetailView(APIView):
+    """ Detail Article """
+    serializer_class = ArticleSerializer
+
     def get(self, request, pk):
         query = Article.objects.get(id=pk)
         serializer = ArticleSerializer(instance=query)
         return Response(serializer.data)
+
+class SearchArticleApi(APIView, StandardResultsSetPaginationList):
+    """ Search All Post Article """
+    serializer_class = ArticleSerializer
+    def get(self, request):
+        q = request.GET.get("q")
+        queryset = Article.objects.filter(Q(title=q) | q(subjects=q))
+        result = self.paginate_queryset(queryset, request)
+        serializer = ArticleSerializer(instance=result, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
