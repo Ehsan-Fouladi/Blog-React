@@ -15,7 +15,7 @@ class CategoryArticle(serializers.HyperlinkedModelSerializer):
 
 class ArticleSerializer(serializers.ModelSerializer):
     user = UserEmailNameRelationalField(read_only=True)
-    category = CategoryArticle(read_only=True)
+    category = CategoryArticle(read_only=True, many=True)
 
     class Meta:
         model = Article
