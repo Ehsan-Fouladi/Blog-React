@@ -19,7 +19,7 @@ class RegisterSerializer(serializers.ModelSerializer):
         return data
 
 
-class ProfileSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = User
-        fields = ("email", "username", "image")
+# class ProfileSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = User
+#         fields = ("email", "username", "image")
