@@ -2,11 +2,6 @@ from rest_framework import serializers
 from .models import Article, Category
 
 
-class UserEmailNameRelationalField(serializers.RelatedField):
-    def to_representation(self, value):
-        return f'{value.email}'
-
-
 class CategoryArticle(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Category
@@ -14,13 +9,14 @@ class CategoryArticle(serializers.HyperlinkedModelSerializer):
 
 
 class ArticleSerializer(serializers.ModelSerializer):
-    user = UserEmailNameRelationalField(read_only=True)
-    category = CategoryArticle(read_only=True, many=True)
+    user = serializers.ReadOnlyField(source='user.email')
+    # category = CategoryArticle(read_only=True, many=True)
 
     class Meta:
         model = Article
         fields = ('id', "user", "fullname", "title",
                   "subjects", "image", "create", "category")
+        extra_kwargs = {'image': {'required': False}}
 
         def create(self, validated_data):
             return Article.objects.create(**validated_data)

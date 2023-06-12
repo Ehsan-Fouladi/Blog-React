@@ -157,4 +157,5 @@ SPECTACULAR_SETTINGS = {
     'DESCRIPTION': 'blog project django and react is frontend and backend',
     'VERSION': '3.2.0',
     'SERVE_INCLUDE_SCHEMA': False,
+    'COMPONENT_SPLIT_REQUEST': True
 }

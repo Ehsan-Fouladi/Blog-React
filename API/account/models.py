@@ -32,7 +32,10 @@ class User(AbstractBaseUser):
         verbose_name=_("email address"),
         max_length=255,
         unique=True,
-    )
+        blank=True,
+        null=True)
+    username = models.CharField(verbose_name=_("username"), max_length=59, unique=True, blank=True, null=True)
+    image = models.ImageField(upload_to="profile", verbose_name=_("image"), blank=True, null=True)
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
 
