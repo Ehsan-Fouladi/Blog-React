@@ -2,9 +2,10 @@ from django.db import models
 from django.contrib.auth.models import BaseUserManager, AbstractBaseUser
 from django.utils.translation import gettext_lazy as _
 
+
 class UserManager(BaseUserManager):
     def create_user(self, email, password=None):
-        
+
         if not email:
             raise ValueError("Users must have an email address")
 
@@ -17,7 +18,7 @@ class UserManager(BaseUserManager):
         return user
 
     def create_superuser(self, email, password=None):
-        
+
         user = self.create_user(
             email,
             password=password,
@@ -29,13 +30,11 @@ class UserManager(BaseUserManager):
 
 class User(AbstractBaseUser):
     email = models.EmailField(
-        verbose_name=_("email address"),
-        max_length=255,
-        unique=True,
-        blank=True,
-        null=True)
-    username = models.CharField(verbose_name=_("username"), max_length=59, unique=True, blank=True, null=True)
-    image = models.ImageField(upload_to="profile", verbose_name=_("image"), blank=True, null=True)
+        _("email address"), max_length=255, unique=True, blank=True, null=True)
+    username = models.CharField(
+        _("username"), max_length=59, unique=True, blank=True, null=True)
+    image = models.ImageField(
+        _("image"), upload_to="profile", blank=True, null=True)
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
 

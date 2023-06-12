@@ -16,10 +16,10 @@ class Article(models.Model):
     user = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name="Users")
     category = models.ManyToManyField(Category, related_name="categories")
-    fullname = models.CharField(verbose_name=_("fullname"), max_length=50)
-    title = models.CharField(verbose_name=_("title"), max_length=50)
-    subjects = models.TextField(verbose_name=_("description"))
-    image = models.ImageField(verbose_name=_("image"), upload_to='img')
+    fullname = models.CharField(_("fullname"), max_length=50)
+    title = models.CharField(_("title"), max_length=50)
+    subjects = models.TextField(_("description"))
+    image = models.ImageField(_("image"), upload_to='img')
     create = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now_add=True)
 
