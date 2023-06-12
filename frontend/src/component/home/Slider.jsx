@@ -18,20 +18,20 @@ class Slider extends Component {
 
     render() {
         return (<>
-            <MDBCarousel showControls showIndicators dark fade style={{marginTop: "15px"}} touch={true}>
-                {this.state.users.map((user) => {
-                    return (
+            {this.state.users.map((user, id) => {
+                return (
+                    <MDBCarousel showControls showIndicators dark fade style={{marginTop: "15px"}} touch={true}>
                         <MDBCarouselItem key={user.id}
-                            className='w-100 d-block'
-                            itemId={1}
-                            src={user.image}
-                            alt='image'>
+                                         className='w-100 d-block'
+                                         itemId={id}
+                                         src={user.image}
+                                         alt='image'>
                             <h5>{user.title}</h5>
                             <p>{user.subjects}</p>
                         </MDBCarouselItem>
-                    );
-                })}
-            </MDBCarousel>
+                    </MDBCarousel>
+                );
+            })}
             <Card/>
         </>);
     };
